@@ -1,23 +1,30 @@
-import logging
 import asyncio
-from bot import bot, dp
-from aiogram import Dispatcher
-import handlers
 
-logging.basicConfig(level=logging.INFO)
+from telegram_bot import handlers
+from telegram_bot.bot import dp
+from video_base.video import VideoProcess
 
 
-async def main(dispatcher: Dispatcher) -> None:
-    handlers.setup(dispatcher)
+async def main():
 
-    try:
-        await dispatcher.start_polling()
-    finally:
-        await dispatcher.storage.close()
-        await dispatcher.storage.wait_closed()
-        await bot.session.close()
+    while True:
+        handlers.setup(dp)
+
+        try:
+            async with asyncio.TaskGroup() as tg:
+                tg.create_task(dp.start_polling())
+                tg.create_task(VideoProcess.read_video())
+
+        except Exception as ex:
+            print(ex)
+            continue
+
+        finally:
+            dp.stop_polling()
 
 
 if __name__ == '__main__':
-    asyncio.run(main(dp))
+    asyncio.run(main())
+
+
 
