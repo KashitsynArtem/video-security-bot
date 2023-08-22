@@ -87,13 +87,7 @@ class VideoProcessService:
                     await self.detect_motion(self.frame)
                     await self.alert_motion_detection()
 
-                cv2.imshow('Video Stream', self.frame)
-                if cv2.waitKey(1) & 0xFF == ord('q'):
-                    break
-
                 await asyncio.sleep(0)
-
-                await stats()
 
             except Exception as ex:
                 print(f'{ex}')
