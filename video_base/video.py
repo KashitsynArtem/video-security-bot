@@ -5,7 +5,6 @@ import cv2
 
 from settings import Settings
 from telegram_bot.bot import send_alert, send_error
-from utils.stats import stats
 from utils.time_base import get_current_time, delta_time
 
 
@@ -90,7 +89,8 @@ class VideoProcessService:
                 await asyncio.sleep(0)
 
             except Exception as ex:
-                print(f'{ex}')
+                await send_error(f'{ex}')
+                await asyncio.sleep(1)
                 continue
 
         video_capture = await self.video_capture()

@@ -12,11 +12,11 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 
 
 async def send_alert(buf):
-    await bot.send_photo(chat_id=os.getenv('ID_ADMIN'),
+    await bot.send_photo(chat_id=Settings.ID_ADMIN,
                          caption=f'Alert:',
                          photo=InputFile(buf))
 
 
 async def send_error(caption_error):
-    await bot.send_message(chat_id=os.getenv('ID_ADMIN'),
+    await bot.send_message(chat_id=Settings.ID_ADMIN,
                            text=f'Error: {caption_error}')
