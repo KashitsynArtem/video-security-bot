@@ -23,7 +23,7 @@ Also, you can't control the detection mode quickly. For example, if you are at h
 This application processes the RTSP stream of the video camera. In cases where there is movement in the frame - sends a screenshot to the telegram bot. You can also quickly switch the detection mode.
 
 ## Bot commands:
-**/sc** - *sends a screenshot from the camera to the bot.*
-**/on_detection_mode** - *enables detection mode.*
-**/off_detection_mode** - *disables detection mode.*
-**/stats** - *sends data: CPU load and memory used.*
+- **/sc** - *sends a screenshot from the camera to the bot.*
+- **/on_detection_mode** - *enables detection mode.*
+- **/off_detection_mode** - *disables detection mode.*
+- **/stats** - *sends data: CPU load and memory used.*
