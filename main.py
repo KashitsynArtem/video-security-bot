@@ -1,7 +1,7 @@
 import asyncio
 
 from telegram_bot import handlers
-from telegram_bot.bot import dp
+from telegram_bot.bot import dp, send_error
 from video_base.video import VideoProcess
 
 
@@ -16,7 +16,7 @@ async def main():
                 tg.create_task(VideoProcess.read_video())
 
         except Exception as ex:
-            print(ex)
+            await send_error(f'{ex}')
             continue
 
         finally:
